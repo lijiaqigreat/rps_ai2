@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="css/css.css">
   </head>
   <body>
-    <div role="navigation" class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
+    <div class="container">
+      <div role="navigation" class="navbar navbar-inverse">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
             <span class="sr-only">Toggle navigation</span>
@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
           </button>
           <a href="#" class="navbar-brand">
-            Rock Paper Scisser with AI
+            Rock Paper Scisser AI
           </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -30,7 +30,7 @@
             <li><a href="#">HOME</a></li>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">DOCS<span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
-                <li><a href="doc/requirement.html">Requirement</a></li>
+                <li><a href="https://github.com/lijiaqigreat/rps_ai/blob/gh-pages/doc/requirement.md">Requirement</a></li>
               </ul>
             </li>
           </ul>
@@ -41,25 +41,71 @@
       </div>
     </div>
     <div class="container" id="main">
-      <div id="intro">
-        <p>This is a rock paper scisser game</p>
-        <a href="doc/requirement.html">link</a>
-      </div>
-      <div id="game">
-        <div id="g_hand">
-          <button class="gh col-xs-4" id="gh_0" onclick="rps.choose(0)"></button>
-          <button class="gh col-xs-4" id="gh_1" onclick="rps.choose(1)"></button>
-          <button class="gh col-xs-4" id="gh_2" onclick="rps.choose(2)"></button>
-        </div>
-        <div id="g_result">
-          <div class="gr col-xs-6 h_0" id="gr_0">
+      <div id="game" >
+        <div id="g_result" class="row">
+          <div class="col-xs-6">
+            <img class="gr" src="asset/rps_r0.jpg" id="gr_0">
           </div>
-          <div class="gr col-xs-6" id="gr_1">
+          <div class="col-xs-6">
+            <img class="gr" src="asset/rps_r1.jpg" id="gr_1">
           </div>
         </div>
-        <div id="g_stat">
+        <div id="g_stat" class="flexp">
+          <div style="width:67%">
+            <p class="boxh">Statistics:</p>
+            <div class="box" style="background-color:#ff0000">
+              <table id="g_score">
+                <thead>
+                  <tr>
+                    <td>WIN</td>
+                    <td>TIE</td> 
+                    <td>LOST</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>0</td>
+                    <td>0</td> 
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>0%</td>
+                    <td>0%</td> 
+                    <td>0%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              Tweet
+            </div>
+          </div><!--
+          --><div style="width:33%">
+            <p class="boxh">history:</p>
+            <div class="box" style="background-color:#00ff00">
+              <div id="g_hist">
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="g_hist">
+        <div id="g_hand" class="row">
+          <div class="col-xs-4">
+            <div class="gh" onclick="rps.choose(0)">
+              <img src="asset/rps_r0.jpg">
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="gh" onclick="rps.choose(1)">
+              <img src="asset/rps_p0.jpg">
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="gh" onclick="rps.choose(2)">
+              <img src="asset/rps_s0.jpg">
+            </div>
+          </div>
+        </div>
+        <div id="g_hist" class="row">
         </div>
       </div>
       <div id="bot">
@@ -67,10 +113,10 @@
         </div>
         
       </div>
-      <div id="intro" class="name">
-        
+      <div id="intro">
+        <p>This is a rock paper scisser game</p>
+        <a href="doc/requirement.html">link</a>
       </div>
-
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -78,7 +124,12 @@
     <!-- Include all compiled plugins (below), or include individual files as needed-->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/react.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/preload.js"></script>
+    <script>
+      server={};
+    </script>
+    <script src="js/bots/random.js"></script>
+    <script src="js/postload.js"></script>
     <!--script src="vendor/jquery.min.js"></script-->
   </body>
 </html>

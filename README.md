@@ -1,4 +1,3 @@
-appengine-skeleton
+Rock Paper Scissor with AI
 =============================
 
-This is a generated application from the appengine-skeleton archetype.

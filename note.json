@@ -1,0 +1,141 @@
+{
+  "design":
+  {
+    "datastore":
+    {
+      "independent":
+      {
+        "turn":
+        {
+          "hand":"int",
+          "time":"int"
+        },
+        "game":
+        {
+          "date":"data",
+          "person":"??",
+          "stats":"??",
+          "browser":"String",
+          "robot":"??",
+          "robot param":"??"
+        },
+        "person":
+        {
+          "info":"??",
+          "id":"??",
+          "stats":
+          {
+            "basic":"??"
+          }
+        },
+
+        "global":
+        {
+          "stats":"??"
+        }
+      },
+      "draft":
+      {
+        "game":
+        {
+          "bot":"Key",
+          "person":"Key",
+          "date":"date",
+          "turns":"blob",//big
+          "times":"blob"//big
+        },
+        "person":
+        {
+          "stat":"any"//always update
+        },
+        "bot":
+        {
+          "name":"String",
+          "paramters":"any",
+          "lastUpdate":"date",
+          "data":"blob"//big
+        },
+        "personal_bot":
+        {
+          "bot":"Key",
+          "person":"Key",
+          "date":"date",
+          "data":"blob"//big
+        }
+      }
+    },
+    "http":
+    {
+      //basic
+      "get bot":["name,param,person","blob,stat,time"],
+      "post upload_game":["game",""],
+      //for fun
+      "get person":["personkey","stat"],
+      "get stat":["","stat"],
+      //maintain
+      "post update":["token",""]
+      //make
+    },
+    "java":
+    {
+      "bot_gen":
+      {
+        "updateg":"param,blob_g blob",//global
+        "updatep":"param,blob_p blob",//personal
+        "getbot":"param,blob_g,blob_p bot"
+      }
+    },
+    "javascript":
+    {
+      "bot":
+      {
+        "init":"param,data bot",
+        "update":"bot,turn bot",
+        "predict":"bot choice"
+      }
+    },
+    "ui":
+    {
+      "choice":"button",
+      "display":"",
+      "stat":"div",
+      "bot":
+      {
+        "reset":"button",
+        "change":"input"
+      },
+      "share":"div",
+      "link":"nav"
+    }
+  },
+  "stat":
+  {
+    "game":
+    {
+      "longest win":"int",
+      "longest lost":"int",
+      "win count":"int",
+      "tie count":"int",
+      "lost count":"int",
+      "score":"double"
+    },
+    "person":
+    {
+      "longest win":"int",
+      "longest lost":"int",
+      "win rate":"double",
+      "tie rate":"double",
+      "lost rate":"double",
+      "score":"double"
+    }
+  },
+  "assumptions":
+  {
+    "no CS specialist plays the game":"",
+    "user cannot create custom parameter robot":""
+  },
+  "tmp":
+  {
+    "0.4B per turn":""
+  }
+}
