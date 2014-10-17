@@ -6,12 +6,12 @@ var rps=$.extend((rps||{}),function(){
   {
     render: function (){
       return React.DOM.div(
-        {className: "flexp roundR"},
-        React.DOM.div({className: "flexc roundRc"},
+        {className: "roundR"},
+        React.DOM.div({className: "roundRc"},
           React.DOM.img({src:"asset/rps_"+rps.consts.abbr[this.props.h0]+"0.jpg"})
         ),
-        React.DOM.div({className: "flexc roundRc"},rps.consts.result[(this.props.h1-this.props.h0+3)%3]),
-        React.DOM.div({className: "flexc roundRc"},
+        React.DOM.div({className: "roundRc"},rps.consts.result[(this.props.h1-this.props.h0+3)%3]),
+        React.DOM.div({className: "roundRc"},
           React.DOM.img({src:"asset/rps_"+rps.consts.abbr[this.props.h1]+"1.jpg"})
         )
       );
@@ -54,7 +54,7 @@ var rps=$.extend((rps||{}),function(){
       $("#gr_1").attr("src","asset/rps_"+this.consts.abbr[h1]+"1.jpg");
       
       //update history
-      React.renderComponent(new roundsR({list:this.history}),$("#g_hist")[0]);
+      React.renderComponent(new roundsR({list:this.history}),$("#gih_scroll")[0]);
       //update stat
       //TODO
       var count=[0,0,0];
@@ -71,7 +71,7 @@ var rps=$.extend((rps||{}),function(){
           return ((100*count[i]/sum+0.5)|0)+"%";
         }
       };
-      var trs=$("#g_score tbody").children();
+      var trs=$("#gis_table tbody").children();
       $(trs[0]).children().each(function(i){
         this.innerHTML=count[i]>99?"99+":count[i];
       });

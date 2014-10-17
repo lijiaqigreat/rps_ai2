@@ -7,13 +7,13 @@
     <title>Rock Paper Scisser Game - with AI</title>
     <link rel="icon" href="asset/logo_16x16.jpg">
     <!-- Bootstrap-->
-    <link rel='stylesheet', href='vendor/bootstrap/css/bootstrap.min.css'>
+    <!--<link rel='stylesheet', href='http://bootswatch.com/cosmo/bootstrap.min.css'>-->
     <!-- link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" -->
-    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
     <div class="container">
-      <div role="navigation" class="navbar navbar-inverse">
+      <div role="navigation" class="navbar navbar-default">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
             <span class="sr-only">Toggle navigation</span>
@@ -44,68 +44,92 @@
       <div id="game" >
         <div id="g_result" class="row">
           <div class="col-xs-6">
-            <img class="gr" src="asset/rps_r0.jpg" id="gr_0">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                HUMAN
+              </div>
+              <div class="panel-body">
+                <img class="gr" src="asset/rps_r0.jpg" id="gr_0"/>
+              </div>
+            </div>
           </div>
           <div class="col-xs-6">
-            <img class="gr" src="asset/rps_r1.jpg" id="gr_1">
-          </div>
-        </div>
-        <div id="g_stat" class="flexp">
-          <div style="width:67%">
-            <p class="boxh">Statistics:</p>
-            <div class="box" style="background-color:#ff0000">
-              <table id="g_score">
-                <thead>
-                  <tr>
-                    <td>WIN</td>
-                    <td>TIE</td> 
-                    <td>LOST</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>0</td>
-                    <td>0</td> 
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>0%</td>
-                    <td>0%</td> 
-                    <td>0%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div>
-              Tweet
-            </div>
-          </div><!--
-          --><div style="width:33%">
-            <p class="boxh">history:</p>
-            <div class="box" style="background-color:#00ff00">
-              <div id="g_hist">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                ROBOT
+              </div>
+              <div class="panel-body">
+                <img class="gr" src="asset/rps_r1.jpg" id="gr_1"/>
               </div>
             </div>
           </div>
         </div>
-        <div id="g_hand" class="row">
-          <div class="col-xs-4">
-            <div class="gh" onclick="rps.choose(0)">
-              <img src="asset/rps_r0.jpg">
+        <div id="g_info" class="row">
+          <div class="col-xs-7">
+            <div class="panel panel-info" id="gi_stat">
+              <div class="panel-heading">
+                Statistics
+              </div>
+              <div class="panel-body">
+                <table class="table" id="gis_table">
+                  <thead>
+                    <tr>
+                      <td>WIN</td>
+                      <td>TIE</td> 
+                      <td>LOST</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>0</td>
+                      <td>0</td> 
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>???%</td>
+                      <td>???%</td> 
+                      <td>???%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div>
+            <div class="rh3">
+              Message
+            </div>
+            <p>
+              You have won 10 games in a row!
+            </p>
             </div>
           </div>
-          <div class="col-xs-4">
-            <div class="gh" onclick="rps.choose(1)">
-              <img src="asset/rps_p0.jpg">
-            </div>
-          </div>
-          <div class="col-xs-4">
-            <div class="gh" onclick="rps.choose(2)">
-              <img src="asset/rps_s0.jpg">
+          <div class="col-xs-5">
+            <div class="panel panel-info" id="gi_hist">
+              <div class="panel-heading">
+                History
+              </div>
+              <div class="panel-body">
+                <div id="gih_scroll">
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div id="g_hist" class="row">
+        <div id="g_hand">
+          <div class="btn-group btn-group-justified">
+            <div onclick="rps.choose(0)" class="btn btn-default btn-xs">
+              <img src="asset/rps_r0.jpg"/>
+              <div>Rock</div>
+            </div>
+            <div onclick="rps.choose(1)" class="btn btn-default btn-xs">
+              <img src="asset/rps_p0.jpg"/>
+              <div>Paper</div>
+            </div>
+            <div onclick="rps.choose(2)" class="btn btn-default btn-xs">
+              <img src="asset/rps_s0.jpg"/>
+              <div>Scisser</div>
+            </div>
+          </div>
         </div>
       </div>
       <div id="bot">
