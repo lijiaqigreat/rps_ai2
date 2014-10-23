@@ -62,7 +62,7 @@
                 <configuration>
                     <sourceDirectory>${project.basedir}/src/main/webapp/less</sourceDirectory>
                     <outputDirectory>${project.build.directory}/${project.build.finalName}/css</outputDirectory>
-                    <compress>true</compress>
+                    <compress>false</compress>
                     <includes>
                         <include>main.less</include>
                     </includes>

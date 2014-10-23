@@ -62,6 +62,17 @@
           "date":"date",
           "data":"blob"//big
         }
+      },
+      "official":
+      {
+        "bot":
+        {
+          "name":"string",
+          "type":"string",
+          "param":"string json",
+          "lastUpdate":"date long",
+          "data":"blobkey"
+        }
       }
     },
     "http":
@@ -106,7 +117,20 @@
       },
       "share":"div",
       "link":"nav"
+    },
+    "server":
+    {
+      "draft":
+      {
+        "client":
+        {
+          "page":"html",
+          "bot":"js",
+          "data":"octet-stream"
+        }
+      }
     }
+
   },
   "stat":
   {

@@ -54,7 +54,7 @@ var rps=$.extend((rps||{}),function(){
       $("#gr_1").attr("src","asset/rps_"+this.consts.abbr[h1]+"1.jpg");
       
       //update history
-      React.renderComponent(new roundsR({list:this.history}),$("#gih_scroll")[0]);
+      React.renderComponent(new roundsR({list:this.history}),$("#gh_scroll")[0]);
       //update stat
       //TODO
       var count=[0,0,0];
@@ -73,9 +73,11 @@ var rps=$.extend((rps||{}),function(){
       };
       var trs=$("#gis_table tbody").children();
       $(trs[0]).children().each(function(i){
+        i=(i+2)%3;
         this.innerHTML=count[i]>99?"99+":count[i];
       });
       $(trs[1]).children().each(function(i){
+        i=(i+2)%3;
         this.innerHTML=getPersent(i);
       });
     },
@@ -90,3 +92,8 @@ var rps=$.extend((rps||{}),function(){
   };
 }());
 //server: update rps.bot, rps.
+var server={
+  lastUpdate:$("#s_last").text(),
+  param:JSON.parse($("#server#param")).text(),
+  data:""
+};
