@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
@@ -177,9 +177,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- <script>window.jQuery || document.write('<script src="/dist/lib/jquery-2.1.0.min.js"><\/script>')</script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed-->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/react.js"></script>
-    <script src="js/preload.js"></script>
     <%!
 private static final String BOT_NAME_DEFAULT="markov";
 private static final String BOT_TYPE_DEFAULT="default";
@@ -249,7 +246,7 @@ private static Entity getEntity(DatastoreService datastore, String botName, Stri
     %>
     <div class="wasteland" id="server">
       <div id="s_last">
-        <%= botE.getProperty("lastUpdate").getLong() %>
+        <%= botE.getProperty("lastUpdate") %>
       </div>
       <div id="s_param">
         <%= botE.getProperty("param") %>
@@ -258,6 +255,9 @@ private static Entity getEntity(DatastoreService datastore, String botName, Stri
       </embed>
     </div>
     </embed>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/react.js"></script>
+    <script src="js/preload.js"></script>
     <script src="js/bots/${botname}.js">
     </script>
     <script src="js/bots/markov.js"></script>

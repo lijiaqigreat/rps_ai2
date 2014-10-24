@@ -12,6 +12,12 @@ rps.bot=function(param, data){
     //change bot state, should not use random
     update:function(h_hum,h_bot){
     },
+    //update data, using raw game
+    train:function(games){
+      games.forEach(function(game,i){
+        //update game
+      });
+    },
     //notify human the state
     getReact: function(){
       return new react(this._private);

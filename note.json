@@ -67,7 +67,8 @@
       {
         "no-global, incre-game":
         {
-          "note1":[
+          "note1":
+          [
             "server saves data",
             "client retrieves data and not-yet-used-game, update data, upload data",
             "client retrieves data, plays game, upload game",
@@ -104,7 +105,8 @@
           {
             "game":
             {
-              "person-bot":"Key",
+              "person":"Key",
+              "bot":"Key",
               "date":"date",
               "turns":"blob",//big
               "times":"blob"//big
@@ -128,43 +130,22 @@
             },
             "person-bot-data":
             {
-              "person-bot":"Key",
+              "person":"Key",
+              "bot":"Key",
               "date":"date",
               "data":"blob"//big
             }
           }
 
         }
-      },
-      "candidate":
-      {
-        "no-global":
-        {
-          "description":"only has anonymous and registered user",
-          "data":
-          {
-            "robot":
-            {
-              "param":"json"
-            },
-            "user":
-            {
-
-            },
-            "game":
-            {
-              "robot":"key",
-              "user":"key"
-            }
-          }
-        }
       }
     },
     "http":
     {
       //basic
-      "get bot":["name,param,person","blob,stat,time"],
+      "get bot":["name,param,person","data,newer games,time"],
       "post upload_game":["game",""],
+      "post new data":["data,name,param,person,time,token",""],
       //for fun
       "get person":["personkey","stat"],
       "get stat":["","stat"],
@@ -181,13 +162,29 @@
         "getbot":"param,blob_g,blob_p bot"
       }
     },
-    "javascript":
+    "client":
     {
+      "input":
+      {
+        "bot":"js",
+        "param":"server,string,json",
+        "data":"server,blob",
+        "games":"server,blob"
+      },
+      "output":
+      {
+        "game":"server,blob",
+        "data":"server,blob"
+      },
       "bot":
       {
-        "init":"param,data bot",
-        "update":"bot,turn bot",
-        "predict":"bot choice"
+        "init":["param,data","bot"],
+        "train":["param,data,games","data"],
+        "update":["bot,turn","bot"],
+        "predict":["bot","choice"]
+      },
+      "http":
+      {
       }
     },
     "ui":

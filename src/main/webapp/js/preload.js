@@ -41,6 +41,7 @@ var rps=$.extend((rps||{}),function(){
       result:["TIE","LOSE","WIN"]
     },
     bot:undefined,
+    //TODO what is this?
     meta:undefined,
     //update view
     history:[],
@@ -94,6 +95,6 @@ var rps=$.extend((rps||{}),function(){
 //server: update rps.bot, rps.
 var server={
   lastUpdate:$("#s_last").text(),
-  param:JSON.parse($("#server#param")).text(),
+  param:JSON.parse($("#s_param").text()),
   data:""
 };
