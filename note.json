@@ -1,4 +1,21 @@
 {
+  "ask":
+  {
+    "confirm design":"",
+    "different format":"server, http, client",
+    "different server":
+    [
+      "apache, jsp, asp, go, ...",
+      "survey for major websites"
+    ],
+    "malicious issue":
+    [
+      "don't worry about it...",
+      "wrong data",
+      "no data"
+    ],
+    "html load order":""
+  },
   "design":
   {
     "datastore":
@@ -34,7 +51,7 @@
           "stats":"??"
         }
       },
-      "draft":
+      "draft1":
       {
         "game":
         {
@@ -63,129 +80,133 @@
           "data":"blob"//big
         }
       },
-      "raw candidate":
+      "draft2":
       {
-        "no-global, incre-game":
+        "note1":
+        [
+          "server saves data",
+          "client retrieves data and not-yet-used-game, update data, upload data",
+          "client retrieves data, plays game, upload game",
+          "server keeps newest data, backup older data"
+        ],
+        "pro":
         {
-          "note1":
-          [
-            "server saves data",
-            "client retrieves data and not-yet-used-game, update data, upload data",
-            "client retrieves data, plays game, upload game",
-            "server keeps newest data, backup older data"
-          ],
-          "pro":
+          "simpler design":
           {
-            "simpler design":
-            {
-              "no global, user difference":"",
-              "simpler robot":"",
-              "robot is 100% javascript":"",
-              "simpler datastore":""
-            }
-          },
-          "con":
-          {
-            "no data for new user":
-            {
-              "no game data stored for new user":"",
-              "can be fix by adding random anonymous data":""
-            },
-            "user data cannot interact":
-            {
-              "more restriction to algorithm":"",
-              "cannot exploit more data":""
-            },
-            "malicious client can mess up data":
-            {
-              "advanced server can check against it":""
-            }
-          },
-          "data":
-          {
-            "game":
-            {
-              "person":"Key",
-              "bot":"Key",
-              "date":"date",
-              "turns":"blob",//big
-              "times":"blob"//big
-            },
-            "person":
-            {
-              "stat":"any"//always update
-            },
-            "bot":
-            {
-              "name":"String",
-              "paramters":"json",
-              "stat":"any"
-            },
-            "person-bot":
-            {
-              "bot":"Key",
-              "person":"Key",
-              "latest":"date",
-              "stat":"any"
-            },
-            "person-bot-data":
-            {
-              "person":"Key",
-              "bot":"Key",
-              "date":"date",
-              "data":"blob"//big
-            }
+            "no global, user difference":"",
+            "simpler robot":"",
+            "robot is 100% javascript":"",
+            "simpler datastore":""
           }
-
+        },
+        "con":
+        {
+          "no data for new user":
+          {
+            "no game data stored for new user":"",
+            "can be fix by adding random anonymous data":""
+          },
+          "user data cannot interact":
+          {
+            "more restriction to algorithm":"",
+            "cannot exploit more data":""
+          },
+          "malicious client can mess up data":
+          {
+            "advanced server can check against it":""
+          }
+        },
+        "data":
+        {
+          "game":
+          {
+            "person":"Key",
+            "bot":"Key",
+            "date":"date",
+            "turns":"blob",//big
+            "times":"blob"//big
+          },
+          "person":
+          {
+            "stat":"any"//always update
+          },
+          "bot":
+          {
+            "name":"String",
+            "paramters":"json",
+            "stat":"any"
+          },
+          "person-bot":
+          {
+            "bot":"Key",
+            "person":"Key",
+            "latest":"date",
+            "stat":"any"
+          },
+          "person-bot-data":
+          {
+            "person":"Key",
+            "bot":"Key",
+            "date":"date",
+            "data":"blob"//big
+          }
+        },
+        "communication":
+        {
+          "input":
+          {
+            "bot":"js",//code
+            "param":"server,string,json",//param
+            "lastUpdate":"server,long,date",//meta
+            "data":"server,blob",//data
+            "games":"server,blob"//data2
+          },
+          "output":
+          {
+            "game":"server,blob",
+            "data":"server,blob"
+          },
+          "bot":
+          {
+            "init":["param,data","bot"],
+            "train":["param,data,games","data"],
+            "update":["bot,turn","bot"],
+            "predict":["bot","choice"]
+          }
+        },
+        "async analysis":
+        {
+          "note":
+          {
+            "for now, serial":""
+          },
+          "get":
+          {
+            "page":[],
+            "param":["page"],
+            "bot":["page"],
+            "data":["param"],
+            "games":["param"],
+            "":""
+          },
+          "exe":
+          {
+            "updateView":["page"],
+            "bot-init":["bot","param","data"],
+            "train":["bot","param","data","games"],
+            "play":["train","bot-init"],
+            "":""
+          },
+          "put":
+          {
+            "data2":["train"],
+            "game":["play"]
+          }
         }
-      }
-    },
-    "http":
-    {
-      //basic
-      "get bot":["name,param,person","data,newer games,time"],
-      "post upload_game":["game",""],
-      "post new data":["data,name,param,person,time,token",""],
-      //for fun
-      "get person":["personkey","stat"],
-      "get stat":["","stat"],
-      //maintain
-      "post update":["token",""]
-      //make
-    },
-    "java":
-    {
-      "bot_gen":
-      {
-        "updateg":"param,blob_g blob",//global
-        "updatep":"param,blob_p blob",//personal
-        "getbot":"param,blob_g,blob_p bot"
       }
     },
     "client":
     {
-      "input":
-      {
-        "bot":"js",
-        "param":"server,string,json",
-        "data":"server,blob",
-        "games":"server,blob"
-      },
-      "output":
-      {
-        "game":"server,blob",
-        "data":"server,blob"
-      },
-      "bot":
-      {
-        "init":["param,data","bot"],
-        "train":["param,data,games","data"],
-        "update":["bot,turn","bot"],
-        "predict":["bot","choice"]
-      },
-      "http":
-      {
-      }
     },
     "ui":
     {
@@ -212,7 +233,6 @@
         }
       }
     }
-
   },
   "stat":
   {
@@ -238,10 +258,33 @@
   "assumptions":
   {
     "no CS specialist plays the game":"",
-    "user cannot create custom parameter robot":""
+    "user cannot create custom parameter robot":"maybe"
   },
   "tmp":
   {
-    "0.4B per turn":""
+    "0.4B per turn":"",
+    "json fold":"http://www.bodurov.com/JsonFormatter/",
+    "http":
+    {
+      //basic
+      "get bot":["name,param,person","data,newer games,time"],
+      "post upload_game":["game",""],
+      "post new data":["data,name,param,person,time,token",""],
+      //for fun
+      "get person":["personkey","stat"],
+      "get stat":["","stat"],
+      //maintain
+      "post update":["token",""]
+      //make
+    },
+    "java":
+    {
+      "bot_gen":
+      {
+        "updateg":"param,blob_g blob",//global
+        "updatep":"param,blob_p blob",//personal
+        "getbot":"param,blob_g,blob_p bot"
+      }
+    }
   }
 }
