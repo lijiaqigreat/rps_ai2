@@ -50,7 +50,7 @@
         },
         "bot":
         {
-          "name":"String",
+          "name":"filename",
           "paramters":"any",
           "lastUpdate":"date",
           "data":"blob"//big
@@ -63,15 +63,100 @@
           "data":"blob"//big
         }
       },
-      "official":
+      "raw candidate":
       {
-        "bot":
+        "no-global, incre-game":
         {
-          "name":"string",
-          "type":"string",
-          "param":"string json",
-          "lastUpdate":"date long",
-          "data":"blobkey"
+          "note1":[
+            "server saves data",
+            "client retrieves data and not-yet-used-game, update data, upload data",
+            "client retrieves data, plays game, upload game",
+            "server keeps newest data, backup older data"
+          ],
+          "pro":
+          {
+            "simpler design":
+            {
+              "no global, user difference":"",
+              "simpler robot":"",
+              "robot is 100% javascript":"",
+              "simpler datastore":""
+            }
+          },
+          "con":
+          {
+            "no data for new user":
+            {
+              "no game data stored for new user":"",
+              "can be fix by adding random anonymous data":""
+            },
+            "user data cannot interact":
+            {
+              "more restriction to algorithm":"",
+              "cannot exploit more data":""
+            },
+            "malicious client can mess up data":
+            {
+              "advanced server can check against it":""
+            }
+          },
+          "data":
+          {
+            "game":
+            {
+              "person-bot":"Key",
+              "date":"date",
+              "turns":"blob",//big
+              "times":"blob"//big
+            },
+            "person":
+            {
+              "stat":"any"//always update
+            },
+            "bot":
+            {
+              "name":"String",
+              "paramters":"json",
+              "stat":"any"
+            },
+            "person-bot":
+            {
+              "bot":"Key",
+              "person":"Key",
+              "latest":"date",
+              "stat":"any"
+            },
+            "person-bot-data":
+            {
+              "person-bot":"Key",
+              "date":"date",
+              "data":"blob"//big
+            }
+          }
+
+        }
+      },
+      "candidate":
+      {
+        "no-global":
+        {
+          "description":"only has anonymous and registered user",
+          "data":
+          {
+            "robot":
+            {
+              "param":"json"
+            },
+            "user":
+            {
+
+            },
+            "game":
+            {
+              "robot":"key",
+              "user":"key"
+            }
+          }
         }
       }
     },
