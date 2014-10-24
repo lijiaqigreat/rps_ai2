@@ -14,6 +14,8 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<%@ page import="java.io.File" %>
+
 <html>
 <head>
     <link type="text/css" rel="stylesheet" href="/css/main.css"/>
@@ -22,6 +24,21 @@
 <body>
 
 <%
+    {
+      String tmp=System.getProperty("user.dir");
+      String tmp2="dir: "+tmp+"\n";
+      File folder = new File(tmp);
+      File[] listOfFiles = folder.listFiles();
+
+      for (int i = 0; i < listOfFiles.length; i++) {
+        if (listOfFiles[i].isFile()) {
+          tmp2+="File " + listOfFiles[i].getName()+"\n";
+        } else if (listOfFiles[i].isDirectory()) {
+          tmp2+="Directory " + listOfFiles[i].getName()+"\n";
+        }
+      }
+      pageContext.setAttribute("test1", tmp2);
+    }
     String guestbookName = request.getParameter("guestbookName");
     if (guestbookName == null) {
         guestbookName = "default";
@@ -32,7 +49,7 @@
     if (user != null) {
         pageContext.setAttribute("user", user);
 %>
-
+<p>${fn:escapeXml(test1)}</p>
 <p>Hello, ${fn:escapeXml(user.nickname)}! (You can
     <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 <%
