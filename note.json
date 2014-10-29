@@ -6,7 +6,8 @@
     "different server":
     [
       "apache, jsp, asp, go, ...",
-      "survey for major websites"
+      "survey for major websites",
+      "nginx"
     ],
     "malicious issue":
     [
@@ -14,7 +15,8 @@
       "wrong data",
       "no data"
     ],
-    "html load order":""
+    "html load order":"",
+    "data form":"all json"
   },
   "design":
   {
@@ -123,6 +125,7 @@
             "person":"Key",
             "bot":"Key",
             "date":"date",
+            "data-date":"date",
             "turns":"blob",//big
             "times":"blob"//big
           },
@@ -141,6 +144,7 @@
             "bot":"Key",
             "person":"Key",
             "latest":"date",
+            "firstCreate":"date",
             "stat":"any"
           },
           "person-bot-data":
@@ -155,11 +159,25 @@
         {
           "input":
           {
-            "bot":"js",//code
-            "param":"server,string,json",//param
-            "lastUpdate":"server,long,date",//meta
-            "data":"server,blob",//data
-            "games":"server,blob"//data2
+            "bot":
+            {
+              "format":"js",
+              "lifetime":"long",
+              "source":"server,external"
+            },
+            "param":
+            {
+              "format":"json",
+              "lifetime":"long",
+              "source":"client"
+            },
+            "server":
+            {
+              "format":"json",
+              "lifetime":"short",
+              "source":"server",
+              "content":["data","games","meta"]
+            }
           },
           "output":
           {
@@ -174,6 +192,66 @@
             "predict":["bot","choice"]
           }
         },
+        "fixed bot param":
+        {
+          "updateType":
+          {
+            "incremental":
+            {
+              "n oldest unseen games":""
+            },
+            "full":
+            {
+              "n newest games":""
+            }
+          },
+          "starterGames"://actually copy game
+          {
+            "user":
+            [
+              "n latest games with the same user"
+            ],
+            "bot":
+            [
+              "n latest games with the same bot"
+            ]
+          }
+        },
+        "httpapi":
+        {
+          "post data":
+          {
+            "send":
+            {
+              "uri":"",
+              "param":"",
+              "data":"",
+              "date":""
+            },
+            "recieve":
+            {
+            }
+          },
+          "get data":
+          {
+            "send":
+            {
+              "uri":"",
+              "param":
+              {
+              },
+              "strategy":
+              {
+                "":"load games according to param.updateType",
+                "data":"only load data"
+              },
+              "fill strategy":
+              {
+                "anonymous":""
+              }
+            }
+          }
+        },
         "async analysis":
         {
           "note":
@@ -182,27 +260,42 @@
           },
           "get":
           {
-            "page":[],
-            "param":["page"],
-            "bot":["page"],
-            "data":["param"],
-            "games":["param"],
-            "":""
-          },
-          "exe":
-          {
+            "http-page":[],
+            "http-preload":["http-page"],
+            "http-bot":["rps.setupLoad"],
+            "http-data":["rps.setupLoad"],
+            "http-games":["rps.botparam"],
+            "rps.botparam":["http-bot"],
+            "rps.uploadData":["worker..."],
+            "rps.bot":["rps.botparam","http-data","rps.getWorker"],
             "updateView":["page"],
             "bot-init":["bot","param","data"],
             "train":["bot","param","data","games"],
             "play":["train","bot-init"],
-            "":""
-          },
-          "put":
-          {
             "data2":["train"],
             "game":["play"]
+          },
+          "tmp":
+          {
+            "finish this.promise":"",
+            "postMessage":"finish",
+            "finish2":"",
+            "":""
+          },
+          "tmp2":
+          {
+            "rtn=x,rtnc?rtnc(x):null":"",
+            "rtnc=a,rtn?null:a(rtn)":""
           }
-        }
+        },
+        "userapi":
+        {
+          "page":"",
+          "restart":"",
+          "change param":"",
+          "play":""
+        },
+        "":""
       }
     },
     "client":
@@ -264,6 +357,7 @@
   {
     "0.4B per turn":"",
     "json fold":"http://www.bodurov.com/JsonFormatter/",
+    "cdn git":"rawgit.com",
     "http":
     {
       //basic

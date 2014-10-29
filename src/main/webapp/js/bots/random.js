@@ -1,3 +1,4 @@
+/*
 rps.bot=function(param, data){
   var react=React.createClass({
     render:function(){
@@ -28,3 +29,30 @@ rps.bot=function(param, data){
     }
   };
 }(server.param,server.data);
+*/
+//TODO robust api
+var bot={
+  /**
+   * this is a static function
+   * @param {json} botparam specified by user
+   * @return {json} dataParam, used for master to download data
+   * TODO add doc for default value
+   */
+  getDataParam: function(botparam){
+    return {};
+  },
+  train: function(param){
+    var botparam=param.botparam;
+    var data=param.data;
+    var games=param.games;
+    return data;
+  },
+  init: function(param){
+
+  }
+
+  
+};
+self.onmessage = function(e){
+  self.postMessage(bot[e.command](e.param));
+};
